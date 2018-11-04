@@ -86,9 +86,8 @@ for line in lines:
     row.append(us_state_abbrev[line[header.index('State')]])
     rows.append(row)
 
-#output the new format
+#output csv file with the new format
 outputcsvpath = os.path.join('.', 'Resources', 'employee_data_new.csv')
-#csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 with open(outputcsvpath, mode='w', newline='') as outputcsvfile:
     csvwriter = csv.writer(outputcsvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     #output the column headers
