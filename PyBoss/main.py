@@ -1,7 +1,6 @@
 import os
 import csv
 from datetime import datetime
-from pprint import pprint as pp
 
 us_state_abbrev = {
     'Alabama': 'AL',
