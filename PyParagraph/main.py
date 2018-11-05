@@ -21,7 +21,7 @@ def calculate_metrics(paragraph):
     sentences = re.split("(?<=[.!?]) +", paragraph)
     # print(sentences[0])
     #Approximate word count
-    words = re.split(r'\s|-', paragraph)
+    words = re.split(r"\s|-|'", paragraph)
     word_count = len(words)
     row.append(len(words))
     #Approximate sentence count

@@ -45,6 +45,9 @@ output.append('-' * banner_length)
 
 output_filename = os.path.join('.', 'Resources', 'output.dat')
 with open(output_filename, mode='wt', encoding='utf-8') as f:
-    for line in output:
-        f.write(line + '\n')
-        print(line)
+    # for line in output:
+    #     f.write(line + '\n')
+    #     print(line)
+    lines = '\n'.join(output)
+    print(lines)
+    f.write(lines)    
