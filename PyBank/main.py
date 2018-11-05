@@ -29,9 +29,9 @@ with open(csvpath, mode='r') as csvfile:
 #use comprehension to get the sum of change, and the divisor being the total row count of rows other than the first row
 sum_changes, total_changes = sum([row[header.index('change')] for i, row in enumerate(rows) if i > 0]), i
 #get the row with the greatest increase in profits
-most_profitable = max(rows, key=lambda item: item[2])
+most_profitable = max(rows, key=lambda row: row[header.index('change')])
 #get the row with greatest decrease in losses
-worst_loss = min(rows,key=lambda item: item[2])
+worst_loss = min(rows,key=lambda row: row[header.index('change')])
 
 #prep output
 output = []

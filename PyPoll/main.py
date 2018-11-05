@@ -18,6 +18,7 @@ candidates = set([row[header.index('Candidate')] for row in rows])
 #The total number of votes cast
 total_votes = len(rows)
 results = []
+results_header = ["candidate", "percentage of votes per candidate", "total number of votes per candidate"]
 for candidate in candidates:
     result = []
     result.append(candidate)
@@ -28,7 +29,7 @@ for candidate in candidates:
     result.append(total_votes_per_candidate)
     results.append(result)
 #sort the results by popular vote
-sorted_results = sorted(results, key=lambda x:x[2], reverse=True)
+sorted_results = sorted(results, key=lambda result: result[results_header.index('total number of votes per candidate')], reverse=True)
 
 banner_length = 25
 output = []
@@ -37,9 +38,9 @@ output.append('-' * banner_length)
 output.append(f"Total Votes: {total_votes}")
 output.append('-' * banner_length)
 for result in sorted_results:
-    output.append(f"{result[0]}: {result[1]:.3%} ({result[2]})")
+    output.append(f"{result[results_header.index('candidate')]}: {result[results_header.index('percentage of votes per candidate')]:.3%} ({result[results_header.index('total number of votes per candidate')]})")
 output.append('-' * banner_length)
-output.append(f"Winner: {sorted_results[0][0]}")
+output.append(f"Winner: {sorted_results[0][results_header.index('candidate')]}")
 output.append('-' * banner_length)
 
 output_filename = os.path.join('.', 'Resources', 'output.dat')
