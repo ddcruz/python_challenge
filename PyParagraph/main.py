@@ -1,6 +1,5 @@
 import sys
 import re
-from pprint import pprint as pp
 
 def read_file(filename):
     with open(filename, mode='rt', encoding='utf-8') as f:
@@ -22,7 +21,7 @@ def calculate_metrics(paragraph):
     sentences = re.split("(?<=[.!?]) +", paragraph)
     # print(sentences[0])
     #Approximate word count
-    words = paragraph.split(" ")
+    words = re.split(r'\s|-', paragraph)
     word_count = len(words)
     row.append(len(words))
     #Approximate sentence count
@@ -32,7 +31,7 @@ def calculate_metrics(paragraph):
     total_count_of_letters = sum([len(word) for word in words])
     row.append(round(total_count_of_letters/word_count, 2))
     #Average sentence length (in words)
-    row.append(word_count/sentence_count)
+    row.append(round(word_count/sentence_count, 2))
     return {x[0]: x[1] for x in zip(columns, row)}
 
 def main(filename):
