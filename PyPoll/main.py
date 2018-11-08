@@ -14,6 +14,7 @@ with open(csvpath, mode='r') as csvfile:
     rows = [line for line in csvreader]
 
 #A complete list of candidates who received votes
+#cast to a set to get a distinct list of candidates
 candidates = set([row[header.index('Candidate')] for row in rows])
 #The total number of votes cast
 total_votes = len(rows)
@@ -26,11 +27,14 @@ for candidate in candidates:
     total_votes_per_candidate = len([row for row in rows if row[header.index('Candidate')] == candidate])
     #The percentage of votes each candidate won
     result.append(total_votes_per_candidate/total_votes)
+    #total number of votes per candidate
     result.append(total_votes_per_candidate)
+    #append the result of this candidate to the list of results
     results.append(result)
 #sort the results by popular vote
 sorted_results = sorted(results, key=lambda result: result[results_header.index('total number of votes per candidate')], reverse=True)
 
+#prep for output
 banner_length = 25
 output = []
 output.append("Election Results")
@@ -45,9 +49,6 @@ output.append('-' * banner_length)
 
 output_filename = os.path.join('.', 'Resources', 'output.dat')
 with open(output_filename, mode='wt', encoding='utf-8') as f:
-    # for line in output:
-    #     f.write(line + '\n')
-    #     print(line)
     lines = '\n'.join(output)
     print(lines)
     f.write(lines)    
